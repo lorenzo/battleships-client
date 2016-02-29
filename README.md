@@ -20,7 +20,7 @@ Build a battleship game client that will allow a player to:
   - See a list of on-going games
   - See details of a given game
 
-Use the provided skeleton using [StartApp](https://github.com/evancz/elm-architecture-tutorial) or create your own.
+Use the provided skeleton using [StartApp](https://github.com/evancz/elm-architecture-tutorial), or follow the [flickr](http://elm-lang.org/examples/flickr) example and use bare http + tasks.
 
 NB: this project does not compile when cloned.
 
