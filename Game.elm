@@ -63,6 +63,10 @@ update : Action -> Model -> (Model, Effects Action)
 update action model =
     case Debug.log "action" action of
         Create playerName -> (model, createGame playerName)
+        StartGame playerName gameId playerId ->
+          ( {model | game = Just gameId, player = Just playerId}
+          , Effects.none
+          )
         _ -> (model, Effects.none)
 
 createGame : PlayerName -> Effects Action
