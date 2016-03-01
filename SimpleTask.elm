@@ -31,7 +31,7 @@ mb =
 
 httpTask : Task.Task Http.Error (List String)
 httpTask =
-  Http.get decodeGames "http://localhost:4000/games"
+  Http.get decodeGames "http://178.62.254.16:9999/games"
 
 decodeGames : Json.Decoder (List String)
 decodeGames = 
