@@ -16,7 +16,7 @@ import Task
 import Maybe exposing (Maybe(..))
 import Debug
 
--- import Board
+import Board exposing (initialBoard)
 
 
 -- MODEL
@@ -29,7 +29,7 @@ type alias Model =
   { name : PlayerName
   , game : Maybe GameID
   , player: Maybe PlayerID
---  , board : Board.Model
+  , board : Board.Model
   }
 
 mb : Signal.Mailbox Action
@@ -46,6 +46,7 @@ initialModel =
     { name = "Jose"
     , game = Nothing
     , player = Nothing
+    , board = initialBoard
     }
 
 -- UPDATE
@@ -56,7 +57,7 @@ type Action
   | StartGame PlayerName GameID PlayerID
   | Play GameID PlayerID
   | NoOp
---  | BoardMsg GameID PlayerID Board.Action
+  -- | BoardMsg GameID PlayerID Board.Action
 
 
 update : Action -> Model -> (Model, Effects Action)
@@ -121,4 +122,4 @@ kickOff =
 
 view : Signal.Address Action -> Model -> Html
 view address model =
-    Html.div [] []
+  Board.view address model.board 
