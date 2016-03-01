@@ -20,9 +20,9 @@ Build a battleship game client that will allow a player to:
   - See a list of on-going games
   - See details of a given game
 
-Use the provided skeleton using [StartApp](https://github.com/evancz/elm-architecture-tutorial), or follow the [flickr](http://elm-lang.org/examples/flickr) example and use bare http + tasks.
+You can start with simple Http Task, see the example in SimpleTask.elm.
 
-NB: this project does not compile when cloned.
+Then you can move on to use [StartApp](https://github.com/evancz/elm-architecture-tutorial), which there are some skeleton files in this repo (Main.elm, Game.elm and Board.elm - but they do not compile)
 
 ## Getting started
 
@@ -31,8 +31,12 @@ git clone https://github.com/elmcph/battleships-client.git
 cd battleships-client
 npm install
 export PATH=$PATH:./node_modules/.bin  # Or equivalent on Windows
-elm-live 
+# Edit SimpleTask.elm and enter the Battleships game server host/port
+elm-live  SimpleTask.elm
 ```
+Open [http://localhost:8000]
+
+## Local reload servers:
 
 This example uses [elm-live](https://github.com/tomekwi/elm-live) to compile and auto-reload.
 You could also use [elm-server](https://github.com/maxgurewitz/elm-server)
