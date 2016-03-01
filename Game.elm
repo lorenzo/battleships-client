@@ -72,10 +72,7 @@ createGame name =
     |> withHeader "Content-Type" "application/json"
     |> withHeader "Accept" "application/json"
     |> send (jsonReader newGameDecoder) stringReader
-    |> Task.map .data
-    |> Task.toMaybe
-    |> Task.map (Maybe.withDefault NoOp)
-    |> Effects.task
+    |> kickOff
 
 extractValue error response =
   response.data
@@ -115,7 +112,7 @@ runTask =
   Task.andThen httpTask sendToMb
 
 kickOff =
-    Task.toMaybe >> Effects.task
+    Task.map .data >> Task.toMaybe >> Task.map (Maybe.withDefault NoOp) >> Effects.task
 ------------------------------------------
 
 view : Signal.Address Action -> Model -> Html
