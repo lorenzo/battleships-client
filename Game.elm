@@ -79,10 +79,6 @@ createGame name =
     |> send (jsonReader newGameDecoder) stringReader
     |> kickOff
 
-extractValue error response =
-  response.data
-
-
 encodePlayer : PlayerName -> Http.Body
 encodePlayer name =
   E.object [("name", E.string name)]
@@ -97,29 +93,10 @@ newGameDecoder =
   |: ("player" := Json.string)
 
 
------------------------------------
-
-httpTask : Task.Task Http.Error Action
-httpTask =
-  Http.get decodeGames "http://178.62.254.16:9999/games"
-
-decodeGames : Json.Decoder Action
-decodeGames =
-    Json.succeed NoOp
-
-sendToMb : Action -> Task.Task x ()
-sendToMb action =
-  Signal.send mb.address action
-
-
-runTask : Task.Task Http.Error ()
-runTask =
-  Task.andThen httpTask sendToMb
-
 kickOff =
     Task.map .data >> Task.toMaybe >> Task.map (Maybe.withDefault NoOp) >> Effects.task
 ------------------------------------------
 
 view : Signal.Address Action -> Model -> Html
 view address model =
-  Board.view address model.board 
+  Board.view address model.board
